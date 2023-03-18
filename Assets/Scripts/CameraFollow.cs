@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
         if (target.position.y > transform.position.y)
         {
             // The camera will follow the target's position
-            transform.position = new Vector3(transform.position.x, target.position.y, transform.position.x);
+            transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
         }
     }
 }
