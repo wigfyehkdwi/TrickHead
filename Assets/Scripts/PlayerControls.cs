@@ -17,6 +17,9 @@ public class PlayerControls : MonoBehaviour
     // Movement direction of the object
     // [Header("Default Directional Movement Speed")]
     private float movement = 0f;
+    [Header("Score Text")]
+    public Text scoreText;
+    private float score;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,9 @@ public class PlayerControls : MonoBehaviour
             // Object faces to the right
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
+
+        if (rb.velocity.y > 0 && transform.position.y > score) score = transform.position.y;
+        scoreText.text = "Score: " + Mathf.Round(score).ToString();
     }
 
     void FixedUpdate()
@@ -60,6 +66,8 @@ public class PlayerControls : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         // velocity with the downspeed
+        if (rb.velocity.y > 0) return;
         rb.velocity = new Vector3(rb.velocity.x, downSpeed, 0);
+        // score++;
     }
 }
