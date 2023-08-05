@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject platform;
+    public GameObject fakePlatform;
     public float platformSpacing = 2.5f;
     private float nextPlatformY;
     public GameObject gameOverCanvas;
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour
     {
         nextPlatformY = platformSpacing;
         for (int i = 0; i < 1000; i++) SpawnPlatform();
+        nextPlatformY = platformSpacing;
+        for (int i = 0; i < 1000; i++) SpawnFakePlatform();
     }
 
     // Update is called once per frame
@@ -25,6 +28,11 @@ public class GameController : MonoBehaviour
 
     void SpawnPlatform() {
         Instantiate(platform, new Vector3(Random.value * 10f - 5f, nextPlatformY, 0.5f), Quaternion.identity);
+        nextPlatformY += platformSpacing;
+    }
+
+    void SpawnFakePlatform() {
+        Instantiate(fakePlatform, new Vector3(Random.value * 10f - 5f, nextPlatformY, 0.5f), Quaternion.identity);
         nextPlatformY += platformSpacing;
     }
 
